@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "gift1",
+      "description": "Elegant coffee maker",
+      "imageUrl": "https://picsum.photos/seed/12/600/400",
+      "imageHint": "coffee maker"
+    },
+    {
+      "id": "gift2",
+      "description": "Linen bedding set",
+      "imageUrl": "https://picsum.photos/seed/34/600/400",
+      "imageHint": "bedding set"
+    },
+    {
+      "id": "gift3",
+      "description": "Modern kitchen blender",
+      "imageUrl": "https://picsum.photos/seed/56/600/400",
+      "imageHint": "kitchen blender"
+    },
+    {
+      "id": "gift4",
+      "description": "Artisan dinnerware set",
+      "imageUrl": "https://picsum.photos/seed/78/600/400",
+      "imageHint": "dinnerware set"
+    }
+  ]
 }
