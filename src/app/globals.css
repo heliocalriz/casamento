@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 324 40% 95%;
+    --background: 134 45% 30%;
     --foreground: 329 58% 10%;
     --card: 0 0% 100%;
     --card-foreground: 329 58% 15%;
@@ -60,6 +60,8 @@
   }
   body {
     @apply bg-background text-foreground font-body;
+    /* Force background in case Tailwind utilities are not applying */
+    background-color: hsl(var(--background)) !important;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
