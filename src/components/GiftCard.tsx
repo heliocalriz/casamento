@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import React from "react";
 import { Gift, GiftStatus } from "@/lib/types";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,19 +20,47 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete }: GiftCardProps) {
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-md group flex flex-col h-full bg-white border-primary/10">
-      <div className="relative aspect-video w-full overflow-hidden bg-muted">
-        {gift.imageUrl ? (
-          <Image
-            src={gift.imageUrl}
-            alt={gift.nome}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-primary/20">
-            <GiftIcon size={48} />
+      <div
+        className="w-full overflow-hidden border-b border-border flex items-center justify-center relative"
+        style={{ height: 200, backgroundColor: '#F9F9F9' }}
+      >
+        <div
+          className="w-full h-full flex items-center justify-center"
+          style={{
+            borderLeft: '1px solid rgba(0,0,0,0.02)',
+            borderRight: '1px solid rgba(0,0,0,0.02)',
+            boxSizing: 'border-box',
+          }}
+        >
+          <div className="flex flex-col items-center justify-center w-full h-full">
+            <div
+              className="rounded-md p-4"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 120,
+                height: 120,
+                borderRadius: 8,
+              }}
+            >
+              <GiftIcon size={56} style={{ color: 'rgba(85,107,47,0.35)' }} />
+            </div>
           </div>
-        )}
+        </div>
+        {/* watermark initials */}
+        <div
+          style={{
+            position: 'absolute',
+            right: 12,
+            bottom: 12,
+            fontSize: 18,
+            color: 'rgba(85,107,47,0.06)',
+            fontFamily: 'serif',
+          }}
+        >
+          A & H
+        </div>
         <div className="absolute top-2 right-2">
           <Badge 
             variant={isAvailable ? "default" : "secondary"}

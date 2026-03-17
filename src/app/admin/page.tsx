@@ -19,9 +19,17 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 export default function AdminPage() {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState<boolean>(() => {
+    try {
+      return typeof window !== 'undefined' && sessionStorage.getItem('admin-authed') === 'true';
+    } catch (e) {
+      return false;
+    }
+  });
   const [aiLoading, setAiLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { toast } = useToast();
+  const [password, setPassword] = useState('');
 
   const [newGift, setNewGift] = useState({
     nome: "",
@@ -47,7 +55,7 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    loadGifts();
+    if (authenticated) loadGifts();
   }, []);
 
   const handleAddGift = async (e: React.FormEvent) => {
@@ -110,6 +118,38 @@ export default function AdminPage() {
       setAiLoading(false);
     }
   };
+
+  const handleAuth = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    const SECRET = 'helinho2001';
+    if (password === SECRET) {
+      try {
+        sessionStorage.setItem('admin-authed', 'true');
+      } catch (e) {}
+      setAuthenticated(true);
+      loadGifts();
+      toast({ title: 'Autenticado', description: 'Acesso ao painel concedido.' });
+    } else {
+      toast({ variant: 'destructive', title: 'Senha incorreta', description: 'Verifique a senha e tente novamente.' });
+    }
+  };
+
+  if (!authenticated) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-full max-w-md p-8 bg-card rounded-lg shadow-sm">
+          <h2 className="text-2xl font-headline mb-4">Área administrativa</h2>
+          <p className="text-sm text-muted-foreground mb-4">Insira a senha para acessar o painel de gerenciamento.</p>
+          <form onSubmit={handleAuth} className="space-y-4">
+            <Input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Senha" />
+            <div className="flex justify-end">
+              <Button onClick={handleAuth} className="bg-primary text-white">Entrar</Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-background">
