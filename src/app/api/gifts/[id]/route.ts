@@ -1,13 +1,15 @@
 import { NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
+import getPrisma from '@/lib/prisma'
 
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+  const prisma = getPrisma()
   const { id } = params
   await prisma.gift.delete({ where: { id } })
   return NextResponse.json({ ok: true })
 }
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+  const prisma = getPrisma()
   const { id } = params
   const body = await req.json()
   if (body.claim && body.name) {
