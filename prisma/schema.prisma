@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Gift {
+  id        String   @id @default(cuid())
+  nome      String
+  descricao String?
+  categoria String?
+  imageUrl  String?
+  status    String   @default("disponivel")
+  dadoPor   String?
+  createdAt DateTime @default(now())
+}
