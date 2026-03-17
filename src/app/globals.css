@@ -4,25 +4,26 @@
 
 @layer base {
   :root {
-    --background: 134 45% 30%;
-    --foreground: 329 58% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 329 58% 15%;
+    /* Page / brand palette: clean, natural, paper-like */
+    --background: 0 0% 99%; /* off-white #FDFDFD */
+    --foreground: 0 0% 29%; /* dark gray text #4A4A4A */
+    --card: 0 0% 100%; /* white */
+    --card-foreground: 0 0% 6%; /* near black for titles */
     --popover: 0 0% 100%;
-    --popover-foreground: 329 58% 10%;
-    --primary: 329 58% 42%;
-    --primary-foreground: 324 40% 98%;
-    --secondary: 324 20% 90%;
-    --secondary-foreground: 329 58% 20%;
-    --muted: 324 20% 90%;
-    --muted-foreground: 329 20% 40%;
-    --accent: 315 66% 30%;
-    --accent-foreground: 324 40% 98%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 0 0% 6%;
+    --primary: 83 40% 30%; /* olive #556B2F */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 80 14% 52%; /* sage #8F9779 */
+    --secondary-foreground: 0 0% 6%;
+    --muted: 0 0% 86%; /* neutral light #DCDCDC */
+    --muted-foreground: 0 0% 47%;
+    --accent: 83 40% 30%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 55%;
     --destructive-foreground: 0 0% 98%;
-    --border: 329 20% 85%;
-    --input: 329 20% 85%;
-    --ring: 329 58% 42%;
+    --border: 0 0% 94%; /* subtle border */
+    --input: 0 0% 94%;
+    --ring: 83 40% 30%;
     --radius: 0.75rem;
     --chart-1: 329 58% 42%;
     --chart-2: 315 66% 30%;
