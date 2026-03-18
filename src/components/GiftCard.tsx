@@ -16,7 +16,7 @@ interface GiftCardProps {
   onEdit?: (id: string) => void;
 }
 
-export function GiftCard({ gift, onClaim, isAdmin, onDelete }: GiftCardProps) {
+export function GiftCard({ gift, onClaim, isAdmin, onDelete, onEdit }: GiftCardProps) {
   const isAvailable = gift.status === "disponivel";
 
   return (
@@ -103,29 +103,25 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete }: GiftCardProps) {
       
       <CardFooter className="p-4 pt-2 border-t border-primary/5">
         {isAdmin ? (
-          <div className="flex gap-2 w-full">
-            <Button 
-              variant="outline" 
-              className="flex-1 text-xs"
-              onClick={() => onDelete?.(gift.id)}
-            >
-              Excluir
-            </Button>
-            <Button 
-              variant="secondary" 
-              className="flex-1 text-xs"
-              onClick={() => onDelete ? undefined : null}
-              onClickCapture={() => { /* placeholder, real handler passed via prop */ }}
-              onClick={(e) => {
-                e.stopPropagation();
-                // call provided onEdit prop if present
-                // @ts-ignore
-                typeof (onEdit) === 'function' && onEdit(gift.id);
-              }}
-            >
-              Editar
-            </Button>
-          </div>
+            <div className="flex gap-2 w-full">
+              <Button
+                variant="outline"
+                className="flex-1 text-xs"
+                onClick={() => onDelete?.(gift.id)}
+              >
+                Excluir
+              </Button>
+              <Button
+                variant="secondary"
+                className="flex-1 text-xs"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onEdit?.(gift.id);
+                }}
+              >
+                Editar
+              </Button>
+            </div>
         ) : (
           <Button 
             onClick={() => onClaim?.(gift.id)}
