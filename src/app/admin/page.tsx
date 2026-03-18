@@ -28,6 +28,9 @@ export default function AdminPage() {
   });
   const [aiLoading, setAiLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editingGift, setEditingGift] = useState<Gift | null>(null);
+  const [editForm, setEditForm] = useState({ nome: '', categoria: '', descricao: '', resetToAvailable: false });
   const { toast } = useToast();
   const [password, setPassword] = useState('');
 
@@ -106,6 +109,45 @@ export default function AdminPage() {
       loadGifts();
     } catch (error) {
       toast({ variant: 'destructive', title: 'Erro', description: 'Falha ao atualizar o presente.' });
+    }
+  }
+
+  const openEditModal = (id: string) => {
+    const g = gifts.find(x => x.id === id);
+    if (!g) return;
+    setEditingGift(g);
+    setEditForm({ nome: g.nome || '', categoria: g.categoria || '', descricao: g.descricao || '', resetToAvailable: false });
+    setIsEditModalOpen(true);
+  }
+
+  const handleSaveEdit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (!editingGift) return;
+
+    const updates: Partial<Gift> = {
+      nome: editForm.nome,
+      categoria: editForm.categoria || undefined,
+      descricao: editForm.descricao || undefined,
+    };
+
+    if (editForm.resetToAvailable && editingGift.status === 'indisponivel') {
+      updates.status = 'disponivel';
+      // @ts-ignore
+      updates.dadoPor = null;
+    }
+
+    try {
+      // Update backend/mock
+      await updateGift(editingGift.id, updates as Partial<Gift>);
+
+      // Update local state for instant UI feedback
+      setGifts(prev => prev.map(g => g.id === editingGift.id ? { ...g, ...updates } as Gift : g));
+
+      toast({ title: 'Salvo', description: 'Alterações salvas com sucesso.' });
+      setIsEditModalOpen(false);
+      setEditingGift(null);
+    } catch (error) {
+      toast({ variant: 'destructive', title: 'Erro', description: 'Falha ao salvar alterações.' });
     }
   }
 
@@ -233,6 +275,62 @@ export default function AdminPage() {
               </form>
             </DialogContent>
           </Dialog>
+            {/* Edit Modal */}
+            <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
+              <DialogContent className="sm:max-w-[600px]">
+                <DialogHeader>
+                  <DialogTitle className="font-headline text-2xl text-primary">Editar Presente</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={handleSaveEdit} className="space-y-4 pt-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="edit-nome">Nome do Item</Label>
+                    <Input
+                      id="edit-nome"
+                      required
+                      value={editForm.nome}
+                      onChange={e => setEditForm(prev => ({ ...prev, nome: e.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="edit-categoria">Categoria (Opcional)</Label>
+                    <Input
+                      id="edit-categoria"
+                      value={editForm.categoria}
+                      onChange={e => setEditForm(prev => ({ ...prev, categoria: e.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="edit-descricao">Descrição</Label>
+                    <Textarea
+                      id="edit-descricao"
+                      rows={4}
+                      value={editForm.descricao}
+                      onChange={e => setEditForm(prev => ({ ...prev, descricao: e.target.value }))}
+                    />
+                  </div>
+
+                  {editingGift && editingGift.status === 'indisponivel' && (
+                    <div className="p-3 bg-secondary/20 rounded-md">
+                      <p className="font-semibold">Status: Já Escolhido</p>
+                      <div className="mt-2 flex items-center gap-3">
+                        <input
+                          id="reset-available"
+                          type="checkbox"
+                          checked={editForm.resetToAvailable}
+                          onChange={e => setEditForm(prev => ({ ...prev, resetToAvailable: e.target.checked }))}
+                        />
+                        <Label htmlFor="reset-available">Voltar Item a Disponível (remover dados do presenteador)</Label>
+                      </div>
+                    </div>
+                  )}
+
+                  <DialogFooter>
+                    <Button type="button" variant="outline" onClick={() => { setIsEditModalOpen(false); setEditingGift(null); }}>Cancelar</Button>
+                    <Button type="submit" className="bg-primary text-white">Salvar Alterações</Button>
+                  </DialogFooter>
+                </form>
+              </DialogContent>
+            </Dialog>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -267,7 +365,7 @@ export default function AdminPage() {
                 gift={gift} 
                 isAdmin 
                 onDelete={handleDelete}
-                onEdit={handleResetToAvailable}
+                onEdit={openEditModal}
               />
             ))
           )}
