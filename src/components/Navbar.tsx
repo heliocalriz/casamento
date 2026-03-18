@@ -16,7 +16,7 @@ export function Navbar() {
             <Gift size={24} />
           </div>
           <span className="text-2xl font-headline font-bold text-primary tracking-tight">
-            GiftLink
+            A&H | Casamento
           </span>
         </Link>
         

@@ -92,7 +92,7 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete }: GiftCardProps) {
         <p className="text-sm text-muted-foreground line-clamp-2 italic">
           {gift.descricao || "Sem descrição disponível."}
         </p>
-        {!isAvailable && gift.dadoPor && (
+        {!isAvailable && isAdmin && gift.dadoPor && (
           <div className="mt-3 p-2 bg-secondary/50 rounded-md text-sm flex items-center gap-2 text-accent">
             <Check className="w-4 h-4" />
             <span>Presenteado por: <strong>{gift.dadoPor}</strong></span>
@@ -134,7 +134,7 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete }: GiftCardProps) {
               </span>
             ) : (
               <span className="flex items-center gap-2">
-                Indisponível <Lock size={16} />
+                Reservado com carinho <Lock size={16} />
               </span>
             )}
           </Button>
