@@ -5,40 +5,56 @@ const API_BASE = '/api/gifts'
 // If NEXT_PUBLIC_USE_MOCK=true the app will use an in-memory mock list
 const useMock = process.env.NEXT_PUBLIC_USE_MOCK === 'true'
 
-const mockGifts: Gift[] = [
-  { id: '1', nome: 'Fogão', status: 'indisponivel', dadoPor: 'fogao.doador@gmail.com', categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '2', nome: 'Geladeira', status: 'indisponivel', dadoPor: 'geladeira.doador@gmail.com', categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '3', nome: 'Máquina de lavar', status: 'indisponivel', dadoPor: 'maquina.lavar.doador@gmail.com', categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '4', nome: 'Cama', status: 'indisponivel', dadoPor: 'cama.doador@gmail.com', categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '5', nome: 'Guarda roupa', status: 'indisponivel', dadoPor: 'guarda.roupa.doador@gmail.com', categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '6', nome: 'Cabeceira', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '7', nome: 'Robô aspirador', status: 'indisponivel', dadoPor: 'robo.aspirador.doador@gmail.com', categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '8', nome: 'Mesa com cadeiras', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '9', nome: 'Armário de cozinha', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '10', nome: 'Rack', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '11', nome: 'Espelho', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '12', nome: 'Liquidificador', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '13', nome: 'Torradeira', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '14', nome: 'Microondas', status: 'indisponivel', dadoPor: 'microondas.doador@gmail.com', categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '15', nome: 'Air fryer', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '16', nome: 'Tapete', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '17', nome: 'Televisão', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '18', nome: 'Centrifuga', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '19', nome: 'Tanquinho', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '20', nome: 'Jogo de panelas', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '21', nome: 'Jogo de jantar', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '22', nome: 'Cômoda', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '23', nome: 'Batedeira', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '24', nome: 'Faqueiro', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '25', nome: 'Ferro de passar', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '26', nome: 'Sanduicheira', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '27', nome: 'Panela elétrica', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '28', nome: 'Mixer', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '29', nome: 'WAP', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '30', nome: 'Bebedouro', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '31', nome: 'Panela pressão elétrica', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() },
-  { id: '32', nome: 'Aspirador de pó', status: 'disponivel', dadoPor: undefined, categoria: undefined, descricao: undefined, imageUrl: undefined, createdAt: Date.now() }
+const giftsData = [
+  { name: 'Fogão', status: 'Escolhido' },
+  { name: 'Geladeira', status: 'Escolhido' },
+  { name: 'Máquina de lavar', status: 'Escolhido' },
+  { name: 'Cama', status: 'Escolhido' },
+  { name: 'Guarda roupa', status: 'Escolhido' },
+  { name: 'Cabeceira', status: 'Disponível' },
+  { name: 'Robô aspirador', status: 'Escolhido' },
+  { name: 'Mesa com cadeiras', status: 'Disponível' },
+  { name: 'Armário de cozinha', status: 'Disponível' },
+  { name: 'Rack', status: 'Disponível' },
+  { name: 'Espelho', status: 'Disponível' },
+  { name: 'Liquidificador', status: 'Disponível' },
+  { name: 'Torradeira', status: 'Disponível' },
+  { name: 'Microondas', status: 'Escolhido' },
+  { name: 'Air fryer', status: 'Disponível' },
+  { name: 'Tapete', status: 'Disponível' },
+  { name: 'Televisão', status: 'Disponível' },
+  { name: 'Centrifuga', status: 'Disponível' },
+  { name: 'Tanquinho', status: 'Disponível' },
+  { name: 'Jogo de panelas', status: 'Disponível' },
+  { name: 'Jogo de jantar', status: 'Disponível' },
+  { name: 'Cômoda', status: 'Disponível' },
+  { name: 'Batedeira', status: 'Disponível' },
+  { name: 'Faqueiro', status: 'Disponível' },
+  { name: 'Ferro de passar', status: 'Disponível' },
+  { name: 'Sanduicheira', status: 'Disponível' },
+  { name: 'Panela elétrica', status: 'Disponível' },
+  { name: 'Mixer', status: 'Disponível' },
+  { name: 'WAP', status: 'Disponível' },
+  { name: 'Bebedouro', status: 'Disponível' },
+  { name: 'Panela pressão elétrica', status: 'Disponível' },
+  { name: 'Aspirador de pó', status: 'Disponível' }
 ]
+
+const mockGifts: Gift[] = giftsData.map((g, i) => {
+  const isChosen = g.status === 'Escolhido'
+  const id = String(i + 1)
+  const dadoPor = isChosen ? `${g.name.toLowerCase().replace(/\s+/g, '.')}.doador@gmail.com` : undefined
+  return {
+    id,
+    nome: g.name,
+    status: isChosen ? 'indisponivel' : 'disponivel',
+    dadoPor,
+    categoria: undefined,
+    descricao: undefined,
+    imageUrl: undefined,
+    createdAt: Date.now()
+  }
+})
 
 export async function getGifts(): Promise<Gift[]> {
   if (useMock) return Promise.resolve(mockGifts)

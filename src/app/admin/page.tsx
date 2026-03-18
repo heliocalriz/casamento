@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getGifts, addGift, deleteGift } from "@/lib/firebase-mock";
+import { getGifts, addGift, deleteGift, updateGift } from "@/lib/firebase-mock";
 import { Gift } from "@/lib/types";
 import { GiftCard } from "@/components/GiftCard";
 import { Navbar } from "@/components/Navbar";
@@ -97,6 +97,17 @@ export default function AdminPage() {
       }
     }
   };
+
+  const handleResetToAvailable = async (id: string) => {
+    if (!confirm('Deseja realmente voltar este item para disponível e remover os dados do presenteador?')) return;
+    try {
+      await updateGift(id, { status: 'disponivel', dadoPor: null });
+      toast({ title: 'Atualizado', description: 'O presente foi marcado como disponível.' });
+      loadGifts();
+    } catch (error) {
+      toast({ variant: 'destructive', title: 'Erro', description: 'Falha ao atualizar o presente.' });
+    }
+  }
 
   const handleAiGeneration = async () => {
     if (!newGift.nome) {
@@ -256,6 +267,7 @@ export default function AdminPage() {
                 gift={gift} 
                 isAdmin 
                 onDelete={handleDelete}
+                onEdit={handleResetToAvailable}
               />
             ))
           )}

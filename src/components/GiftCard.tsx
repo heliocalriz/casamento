@@ -13,6 +13,7 @@ interface GiftCardProps {
   onClaim?: (id: string) => void;
   isAdmin?: boolean;
   onDelete?: (id: string) => void;
+  onEdit?: (id: string) => void;
 }
 
 export function GiftCard({ gift, onClaim, isAdmin, onDelete }: GiftCardProps) {
@@ -113,6 +114,14 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete }: GiftCardProps) {
             <Button 
               variant="secondary" 
               className="flex-1 text-xs"
+              onClick={() => onDelete ? undefined : null}
+              onClickCapture={() => { /* placeholder, real handler passed via prop */ }}
+              onClick={(e) => {
+                e.stopPropagation();
+                // call provided onEdit prop if present
+                // @ts-ignore
+                typeof (onEdit) === 'function' && onEdit(gift.id);
+              }}
             >
               Editar
             </Button>
