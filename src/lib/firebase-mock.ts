@@ -58,20 +58,21 @@ const giftsData = [
   { name: 'Torradeira', status: 'Disponível', image: imgTorradeira },
   { name: 'WAP', status: 'Disponível', image: imgWap },
   { name: 'Xícara', status: 'Disponível', image: imgXicara },
-  { name: 'Fogão', status: 'Escolhido' },
-  { name: 'Geladeira', status: 'Escolhido' },
-  { name: 'Máquina de lavar', status: 'Escolhido' },
-  { name: 'Cama', status: 'Escolhido' },
-  { name: 'Guarda roupa', status: 'Escolhido' },
-  { name: 'Cabeceira', status: 'Disponível' },
-  { name: 'Robô aspirador', status: 'Escolhido' },
-  { name: 'Mesa com cadeiras', status: 'Disponível' },
-  { name: 'Armário de cozinha', status: 'Disponível' },
-  { name: 'Microondas', status: 'Escolhido' },
-  { name: 'Jogo de jantar', status: 'Disponível' },
-  { name: 'Bebedouro', status: 'Disponível' },
-  { name: 'Panela pressão elétrica', status: 'Disponível' },
-  { name: 'Aspirador de pó', status: 'Disponível' }
+  // Itens sem imagem definida
+  // { name: 'Fogão', status: 'Escolhido' },
+  // { name: 'Geladeira', status: 'Escolhido' },
+  // { name: 'Máquina de lavar', status: 'Escolhido' },
+  // { name: 'Cama', status: 'Escolhido' },
+  // { name: 'Guarda roupa', status: 'Escolhido' },
+  // { name: 'Cabeceira', status: 'Disponível' },
+  // { name: 'Robô aspirador', status: 'Escolhido' },
+  // { name: 'Mesa com cadeiras', status: 'Disponível' },
+  // { name: 'Armário de cozinha', status: 'Disponível' },
+  // { name: 'Microondas', status: 'Escolhido' },
+  // { name: 'Jogo de jantar', status: 'Disponível' },
+  // { name: 'Bebedouro', status: 'Disponível' },
+  // { name: 'Panela pressão elétrica', status: 'Disponível' },
+  // { name: 'Aspirador de pó', status: 'Disponível' }
 ]
 
 const mockGifts: Gift[] = giftsData.map((g, i) => {
