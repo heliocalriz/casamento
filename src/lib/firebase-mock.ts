@@ -1,4 +1,30 @@
 import { Gift } from './types'
+import imgAirFryer from '@/assets/gifts/air fryer.jpg'
+import imgAlexa from '@/assets/gifts/alexa.jpg'
+import imgBatedeira from '@/assets/gifts/batedeira.jpg'
+import imgCentrifuga from '@/assets/gifts/centrifuga.jpg'
+import imgCoifa from '@/assets/gifts/coifa.jpg'
+import imgComoda from '@/assets/gifts/comoda.jpg'
+import imgEspelho from '@/assets/gifts/Espelho.jpeg'
+import imgFaqueiro from '@/assets/gifts/Faqueiro.jpeg'
+import imgFechadura from '@/assets/gifts/fechadura.jpg'
+import imgFerroDePassar from '@/assets/gifts/ferrodepassar.jpeg'
+import imgFondue from '@/assets/gifts/fondue.jpeg'
+import imgFruteira from '@/assets/gifts/fruteira.jpeg'
+import imgJogoDePanela from '@/assets/gifts/jogodepanela.jpeg'
+import imgLiquidificador from '@/assets/gifts/liquidificador.jpg'
+import imgMixer from '@/assets/gifts/mixer.jpeg'
+import imgPanelaDePressao from '@/assets/gifts/paneladepressao.jpg'
+import imgPanelaEletrica from '@/assets/gifts/panelaeletrica.jpg'
+import imgRack from '@/assets/gifts/Rack.jpg'
+import imgSanduicheira from '@/assets/gifts/sanduicheira.jpg'
+import imgTabua from '@/assets/gifts/tábua.jpg'
+import imgTanquinho from '@/assets/gifts/tanquinho.jpg'
+import imgTapete from '@/assets/gifts/tapete.jpg'
+import imgTelevisao from '@/assets/gifts/televisao.jpg'
+import imgTorradeira from '@/assets/gifts/torradeira.jpg'
+import imgWap from '@/assets/gifts/wap.jpeg'
+import imgXicara from '@/assets/gifts/xicara.jpeg'
 
 const API_BASE = '/api/gifts'
 
@@ -6,6 +32,32 @@ const API_BASE = '/api/gifts'
 const useMock = process.env.NEXT_PUBLIC_USE_MOCK === 'true'
 
 const giftsData = [
+  { name: 'Air fryer', status: 'Disponível', image: imgAirFryer },
+  { name: 'Alexa', status: 'Disponível', image: imgAlexa },
+  { name: 'Batedeira', status: 'Disponível', image: imgBatedeira },
+  { name: 'Centrifuga', status: 'Disponível', image: imgCentrifuga },
+  { name: 'Coifa', status: 'Disponível', image: imgCoifa },
+  { name: 'Cômoda', status: 'Disponível', image: imgComoda },
+  { name: 'Espelho', status: 'Disponível', image: imgEspelho },
+  { name: 'Faqueiro', status: 'Disponível', image: imgFaqueiro },
+  { name: 'Fechadura', status: 'Disponível', image: imgFechadura },
+  { name: 'Ferro de passar', status: 'Disponível', image: imgFerroDePassar },
+  { name: 'Fondue', status: 'Disponível', image: imgFondue },
+  { name: 'Fruteira', status: 'Disponível', image: imgFruteira },
+  { name: 'Jogo de panelas', status: 'Disponível', image: imgJogoDePanela },
+  { name: 'Liquidificador', status: 'Disponível', image: imgLiquidificador },
+  { name: 'Mixer', status: 'Disponível', image: imgMixer },
+  { name: 'Panela de pressão', status: 'Disponível', image: imgPanelaDePressao },
+  { name: 'Panela elétrica', status: 'Disponível', image: imgPanelaEletrica },
+  { name: 'Rack', status: 'Disponível', image: imgRack },
+  { name: 'Sanduicheira', status: 'Disponível', image: imgSanduicheira },
+  { name: 'Tábua', status: 'Disponível', image: imgTabua },
+  { name: 'Tanquinho', status: 'Disponível', image: imgTanquinho },
+  { name: 'Tapete', status: 'Disponível', image: imgTapete },
+  { name: 'Televisão', status: 'Disponível', image: imgTelevisao },
+  { name: 'Torradeira', status: 'Disponível', image: imgTorradeira },
+  { name: 'WAP', status: 'Disponível', image: imgWap },
+  { name: 'Xícara', status: 'Disponível', image: imgXicara },
   { name: 'Fogão', status: 'Escolhido' },
   { name: 'Geladeira', status: 'Escolhido' },
   { name: 'Máquina de lavar', status: 'Escolhido' },
@@ -15,26 +67,8 @@ const giftsData = [
   { name: 'Robô aspirador', status: 'Escolhido' },
   { name: 'Mesa com cadeiras', status: 'Disponível' },
   { name: 'Armário de cozinha', status: 'Disponível' },
-  { name: 'Rack', status: 'Disponível' },
-  { name: 'Espelho', status: 'Disponível' },
-  { name: 'Liquidificador', status: 'Disponível' },
-  { name: 'Torradeira', status: 'Disponível' },
   { name: 'Microondas', status: 'Escolhido' },
-  { name: 'Air fryer', status: 'Disponível' },
-  { name: 'Tapete', status: 'Disponível' },
-  { name: 'Televisão', status: 'Disponível' },
-  { name: 'Centrifuga', status: 'Disponível' },
-  { name: 'Tanquinho', status: 'Disponível' },
-  { name: 'Jogo de panelas', status: 'Disponível' },
   { name: 'Jogo de jantar', status: 'Disponível' },
-  { name: 'Cômoda', status: 'Disponível' },
-  { name: 'Batedeira', status: 'Disponível' },
-  { name: 'Faqueiro', status: 'Disponível' },
-  { name: 'Ferro de passar', status: 'Disponível' },
-  { name: 'Sanduicheira', status: 'Disponível' },
-  { name: 'Panela elétrica', status: 'Disponível' },
-  { name: 'Mixer', status: 'Disponível' },
-  { name: 'WAP', status: 'Disponível' },
   { name: 'Bebedouro', status: 'Disponível' },
   { name: 'Panela pressão elétrica', status: 'Disponível' },
   { name: 'Aspirador de pó', status: 'Disponível' }
@@ -51,7 +85,7 @@ const mockGifts: Gift[] = giftsData.map((g, i) => {
     dadoPor,
     categoria: undefined,
     descricao: undefined,
-    imageUrl: undefined,
+    imageUrl: g.image,
     createdAt: Date.now()
   }
 })
