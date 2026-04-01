@@ -45,6 +45,7 @@ const imageMap = {
   'Bebedouro': null,
   'Panela pressão elétrica': null,
   'Aspirador de pó': null,
+  'Aspirador': '/fotos/aspirador.jpeg',
 };
 
 async function main() {
@@ -87,7 +88,8 @@ async function main() {
     { nome: 'Panela pressão elétrica', status: 'disponivel', imageUrl: imageMap['Panela pressão elétrica'] },
     { nome: 'Aspirador de pó', status: 'disponivel', imageUrl: imageMap['Aspirador de pó'] },
     { nome: 'Sapateira', status: 'disponivel', imageUrl: imageMap['Sapateira'] },
-    { nome: 'Bau organizador', status: 'disponivel', imageUrl: imageMap['Bau organizador'] }
+    { nome: 'Bau organizador', status: 'disponivel', imageUrl: imageMap['Bau organizador'] },
+    { nome: 'Aspirador', status: 'disponivel', imageUrl: imageMap['Aspirador'] }
   ];
 
   for (const g of gifts) {
