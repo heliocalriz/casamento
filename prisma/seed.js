@@ -50,7 +50,6 @@ const imageMap = {
 
 async function main() {
   // remove existing rows to avoid duplicates in dev
-  await prisma.gift.deleteMany()
 
 
 
@@ -93,12 +92,20 @@ async function main() {
   ];
 
   for (const g of gifts) {
-    if (g.imageUrl) { // Apenas cria o presente se tiver uma imagem mapeada
-      await prisma.gift.create({ data: g })
+    if (g.imageUrl) {
+      // Verifica se um presente com este nome já existe
+      const existingGift = await prisma.gift.findFirst({
+        where: { nome: g.nome },
+      });
+
+      if (!existingGift) {
+        // Se não existir, cria o presente
+        await prisma.gift.create({ data: g });
+      }
     }
   }
 
-  console.log('seed complete: inserted', gifts.length, 'gifts')
+  console.log('seed complete: inserted/checked', gifts.length, 'gifts')
 }
 
 main()
