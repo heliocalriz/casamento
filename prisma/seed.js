@@ -28,7 +28,9 @@ const imageMap = {
   'Torradeira': '/fotos/torradeira.jpg',
   'WAP': '/fotos/wap.jpeg',
   'Xícara': '/fotos/xicara.jpeg',
-  // Presentes sem imagem explícita na sua lista de 'ls -b', mantendo null ou um placeholder
+  'Sapateira': '/fotos/Sapateira.jpeg',
+  'Bau organizador': '/fotos/bau-organizador.jpeg',
+  // Itens que não têm imagem e devem exibir o placeholder
   'Fogão': null,
   'Geladeira': null,
   'Máquina de lavar': null,
@@ -83,7 +85,9 @@ async function main() {
     { nome: 'WAP', status: 'disponivel', imageUrl: imageMap['WAP'] },
     { nome: 'Bebedouro', status: 'disponivel', imageUrl: imageMap['Bebedouro'] },
     { nome: 'Panela pressão elétrica', status: 'disponivel', imageUrl: imageMap['Panela pressão elétrica'] },
-    { nome: 'Aspirador de pó', status: 'disponivel', imageUrl: imageMap['Aspirador de pó'] }
+    { nome: 'Aspirador de pó', status: 'disponivel', imageUrl: imageMap['Aspirador de pó'] },
+    { nome: 'Sapateira', status: 'disponivel', imageUrl: imageMap['Sapateira'] },
+    { nome: 'Bau organizador', status: 'disponivel', imageUrl: imageMap['Bau organizador'] }
   ];
 
   for (const g of gifts) {
