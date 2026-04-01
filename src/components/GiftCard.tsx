@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Gift, GiftStatus } from "@/lib/types";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -33,21 +34,34 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete, onEdit }: GiftCardP
             boxSizing: 'border-box',
           }}
         >
-          <div className="flex flex-col items-center justify-center w-full h-full">
+          {gift.imageUrl ? (
+            <Image
+              src={gift.imageUrl}
+              alt={gift.nome}
+              layout="fill"
+              objectFit="contain"
+              className="rounded-md"
+              priority
+            />
+          ) : (
             <div
-              className="rounded-md p-4"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 120,
-                height: 120,
-                borderRadius: 8,
-              }}
+              className="flex flex-col items-center justify-center w-full h-full"
             >
-              <GiftIcon size={56} style={{ color: 'rgba(85,107,47,0.35)' }} />
+              <div
+                className="rounded-md p-4"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 120,
+                  height: 120,
+                  borderRadius: 8,
+                }}
+              >
+                <GiftIcon size={56} style={{ color: 'rgba(85,107,47,0.35)' }} />
+              </div>
             </div>
-          </div>
+          )}
         </div>
         {/* watermark initials */}
         <div
