@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 export type GiftStatus = 'disponivel' | 'indisponivel';
 
 export interface Gift {
@@ -7,6 +9,6 @@ export interface Gift {
   dadoPor?: string;
   categoria?: string;
   descricao?: string;
-  imageUrl?: string;
+  imageUrl?: StaticImageData;
   createdAt: number;
 }

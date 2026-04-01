@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, Lock, Gift as GiftIcon, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from 'next/image';
 
 interface GiftCardProps {
   gift: Gift;
@@ -47,6 +48,7 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete, onEdit }: GiftCardP
             <div
               className="flex flex-col items-center justify-center w-full h-full"
             >
+<<<<<<< HEAD
               <div
                 className="rounded-md p-4"
                 style={{
@@ -60,6 +62,19 @@ export function GiftCard({ gift, onClaim, isAdmin, onDelete, onEdit }: GiftCardP
               >
                 <GiftIcon size={56} style={{ color: 'rgba(85,107,47,0.35)' }} />
               </div>
+=======
+              {gift.imageUrl ? (
+                <Image
+                  src={gift.imageUrl}
+                  alt={gift.nome}
+                  width={120}
+                  height={120}
+                  objectFit="contain"
+                />
+              ) : (
+                <GiftIcon size={56} style={{ color: 'rgba(85,107,47,0.35)' }} />
+              )}
+>>>>>>> 579c779c143e52e0900fb7c691116599bc24b56d
             </div>
           )}
         </div>
