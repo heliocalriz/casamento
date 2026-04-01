@@ -10,7 +10,7 @@ const imageMap = {
   'Cômoda': '/fotos/comoda.jpg',
   'Espelho': '/fotos/Espelho.jpeg',
   'Faqueiro': '/fotos/Faqueiro.jpeg',
-  'Fechadura': '/fotos/fechadura.jpg',
+  'Fechadura Digital': '/fotos/fechadura.jpg',
   'Ferro de passar': '/fotos/ferrodepassar.jpeg',
   'Fondue': '/fotos/fondue.jpeg',
   'Fruteira': '/fotos/fruteira.jpeg',
@@ -21,7 +21,7 @@ const imageMap = {
   'Panela elétrica': '/fotos/panela eletrica.jpeg',
   'Rack': '/fotos/Rack.jpg',
   'Sanduicheira': '/fotos/sanduicheira.jpg',
-  'Tábua': '/fotos/tábua.jpg',
+  'Tábua de passar roupa': '/fotos/tábua.jpg',
   'Tanquinho': '/fotos/tanquinho.jpg',
   'Tapete': '/fotos/tapete.jpg',
   'Televisão': '/fotos/televisao.jpg',
@@ -53,6 +53,15 @@ async function main() {
 
 
 
+// ATENÇÃO: Em ambientes de produção, evite rodar `prisma db push --force-reset`
+// e certifique-se de que o comando `prisma db seed` seja executado apenas
+// para inserir dados iniciais ou novos itens que não existem.
+// Se descrições editadas ou novos itens sumirem após um deploy no Vercel,
+// verifique as configurações de Build/Deploy no Vercel para garantir que
+// não haja um comando de reset de banco de dados sendo executado.
+
+
+
   const gifts = [
     { nome: 'Fogão', status: 'indisponivel', dadoPor: 'fogao.doador@gmail.com', imageUrl: imageMap['Fogão'] },
     { nome: 'Geladeira', status: 'indisponivel', dadoPor: 'geladeira.doador@gmail.com', imageUrl: imageMap['Geladeira'] },
@@ -77,6 +86,7 @@ async function main() {
     { nome: 'Jogo de jantar', status: 'disponivel', imageUrl: imageMap['Jogo de jantar'] },
     { nome: 'Cômoda', status: 'disponivel', imageUrl: imageMap['Cômoda'] },
     { nome: 'Batedeira', status: 'disponivel', imageUrl: imageMap['Batedeira'] },
+    { nome: 'Fechadura Digital', status: 'disponivel', imageUrl: imageMap['Fechadura Digital'] },
     { nome: 'Faqueiro', status: 'disponivel', imageUrl: imageMap['Faqueiro'] },
     { nome: 'Ferro de passar', status: 'disponivel', imageUrl: imageMap['Ferro de passar'] },
     { nome: 'Sanduicheira', status: 'disponivel', imageUrl: imageMap['Sanduicheira'] },
@@ -88,7 +98,12 @@ async function main() {
     { nome: 'Aspirador de pó', status: 'disponivel', imageUrl: imageMap['Aspirador de pó'] },
     { nome: 'Sapateira', status: 'disponivel', imageUrl: imageMap['Sapateira'] },
     { nome: 'Bau organizador', status: 'disponivel', imageUrl: imageMap['Bau organizador'] },
-    { nome: 'Aspirador', status: 'disponivel', imageUrl: imageMap['Aspirador'] }
+    { nome: 'Aspirador', status: 'disponivel', imageUrl: imageMap['Aspirador'] },
+    { nome: 'Fruteira', status: 'disponivel', imageUrl: imageMap['Fruteira'] },
+    { nome: 'Xícara', status: 'disponivel', imageUrl: imageMap['Xícara'] },
+    { nome: 'Coifa', status: 'disponivel', imageUrl: imageMap['Coifa'] },
+    { nome: 'Alexa', status: 'disponivel', imageUrl: imageMap['Alexa'] },
+    { nome: 'Tábua de passar roupa', status: 'disponivel', imageUrl: imageMap['Tábua de passar roupa'] },
   ];
 
   for (const g of gifts) {
